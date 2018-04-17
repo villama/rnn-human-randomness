@@ -30,11 +30,11 @@ data_arg.add_argument("--num_moves", type=int,
                       help="Number of moves per person in data")
 
 data_arg.add_argument("--input_dtype", type=str,
-                      default="db",
+                      default="csv",
                       help="Datatype of the input: either db or csv")
 
 data_arg.add_argument("--input", type=str,
-                      default="userdata_FINAL.db",
+                      default="usermoves.csv",
                       help="SQLite3 file with user data")
 
 # ----------------------------------------

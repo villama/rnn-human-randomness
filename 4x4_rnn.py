@@ -1,4 +1,4 @@
-# 4x4_rnn.py ---
+"""4x4_rnn.py."""
 
 from config import get_config, print_usage
 import sqlite3
@@ -15,20 +15,20 @@ from scipy import stats
 
 
 def main():
+    """Main method."""
     # ----------------------------------------
     # Load data from database
     if (config.input_dtype == 'db'):
-        names, times_taken = get_names(), get_times_taken()
+        times_taken = get_times_taken()
         features, labels = get_moves_db()
     else:
-        names, times_taken = None, None
+        times_taken = None
         features, labels = get_moves_csv()
     features, labels = preprocess(features, labels)
 
     # Truncate number of rows if we want to look at less data
     if config.n is not None:
         if config.input_dtype == 'db':
-            names = names[:config.n]
             times_taken = times_taken[:config.n]
         features = features[:config.n]
         labels = labels[:config.n]
@@ -46,7 +46,7 @@ def main():
         predictions[i] = predict(fea_tr[i], lab_tr[i], fea_te[i], i)
 
     # evaluate(features, labels, predictions, times_taken)
-    evaluate_csv(features, labels, predictions, times_taken, names)
+    evaluate_csv(features, labels, predictions, times_taken)
 
     # Save predictions inside log
     s = ""
@@ -58,20 +58,6 @@ def main():
     f = open("logs/predictions.csv", 'w')
     f.write(s)
     f.close()
-
-
-def get_names():
-    # Connect to the db file
-    conn = sqlite3.connect(str(config.input))
-    c = conn.cursor()
-    names = []
-    query = 'SELECT fName, lName FROM UserData WHERE block1 IS NOT NULL'
-    for row in c.execute(query):
-        s = str(row[0]) + ' ' + str(row[1])
-        names += [s]
-
-    # Return names as a list of strings
-    return names
 
 
 def get_times_taken():
@@ -500,7 +486,7 @@ def evaluate(features, labels, te_predictions, times_taken):
     print()
 
 
-def evaluate_csv(features, labels, te_predictions, times_taken, names):
+def evaluate_csv(features, labels, te_predictions, times_taken):
     #    features.shape : (N, 1200, 1, 2)
     #      labels.shape : (N, 1200, 4) -> (N, 1200)
     # predictions.shape : (N, 1200, 4) -> (N, 1200)
@@ -525,18 +511,17 @@ def evaluate_csv(features, labels, te_predictions, times_taken, names):
     print()
 
     # ----------------------------------------
-    # 1. Name, time, accuracy
+    # 1. Time, accuracy
     total_acc = np.zeros(N)
     for i in range(N):
         total_acc[i] = np.sum(te_labels[i] == te_predictions[i])
     total_acc = total_acc / te_labels.shape[1]
 
     if config.input_dtype == "db":
-        print("name, time, total accuracy".format(N))
+        print("time, total accuracy".format(N))
         for i in range(N):
-            print("{},{:.4f},{:.4f}".format(names[i],
-                                            times_taken[i],
-                                            total_acc[i]))
+            print("{:.4f},{:.4f}".format(times_taken[i],
+                                         total_acc[i]))
     else:
         print("total accuracy")
         for i in range(N):
