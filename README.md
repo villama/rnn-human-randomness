@@ -7,3 +7,4 @@ tensorflow 1.7.0
 keras 2.1.5  
 tqdm 4.23.0  
 matplotlib 2.2.2  
+ 
