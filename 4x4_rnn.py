@@ -1,7 +1,7 @@
 """4x4_rnn.py."""
 
 from config import get_config, print_usage
-import sqlite3
+# import sqlite3
 import numpy as np
 from tqdm import trange
 from keras.models import Sequential
