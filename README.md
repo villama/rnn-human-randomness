@@ -2,7 +2,7 @@
 A recurrent neural network in Keras, makes predictions on data collected from users moving randomly within a 4x4 grid. Ultimately makes prediction 33% better than chance. More thorough account of results in report.pdf.
 
 Report findings:
-[a relative link](report.pdf)
+[report.pdf](report.pdf)
 
 View and complete study as presented to participants:
 https://web.uvic.ca/~jvillama/4x4
