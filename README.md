@@ -7,9 +7,6 @@ Report findings:
 View and complete study as presented to participants:
 https://fourbyfour.herokuapp.com
 
-Download the dataset and place in root:
-https://www.kaggle.com/jvillama/random-moves-within-a-4x4-grid/data
-
 # Dependencies
 numpy 1.14.2  
 tensorflow 1.7.0  
