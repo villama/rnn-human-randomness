@@ -5,7 +5,7 @@ Report findings:
 [report.pdf](report.pdf)
 
 View and complete study as presented to participants:
-https://web.uvic.ca/~jvillama/4x4
+https://fourbyfour.herokuapp.com
 
 Download the dataset and place in root:
 https://www.kaggle.com/jvillama/random-moves-within-a-4x4-grid/data
