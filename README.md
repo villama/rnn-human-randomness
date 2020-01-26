@@ -1,4 +1,4 @@
-## RNN and Human Randomness
+## Recurrent Neural Network and Human Randomness
 A recurrent neural network in Keras which makes predictions on data collected from users moving randomly within a 4x4 grid. Ultimately makes prediction 33% better than chance. More thorough account of results in report.pdf.
 
 Report findings:
